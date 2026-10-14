@@ -1,0 +1,136 @@
+{% load static %}
+
+<footer class="bg-dark text-light pt-5 pb-3 mt-5">
+
+    <div class="container">
+
+        <div class="row gy-4">
+
+            <!-- Logo -->
+            <div class="col-lg-4">
+
+                <h2 class="fw-bold text-warning">
+                    🍽 Restaurant
+                </h2>
+
+                <p class="text-secondary mt-3">
+                    Bizning restoranimiz sizga eng mazali milliy va Yevropa
+                    taomlarini zamonaviy muhitda taqdim etadi.
+                    Har bir taom sevgi bilan tayyorlanadi.
+                </p>
+
+            </div>
+
+            <!-- Menu -->
+            <div class="col-lg-2">
+
+                <h5 class="text-warning mb-3">
+                    Menyu
+                </h5>
+
+                <ul class="list-unstyled">
+
+                    <li><a href="{% url 'index' %}" class="text-decoration-none text-light">Bosh sahifa</a></li>
+
+                    <li><a href="{% url 'about' %}" class="text-decoration-none text-light">Biz haqimizda</a></li>
+
+                    <li><a href="{% url 'reservation' %}" class="text-decoration-none text-light">Bron qilish</a></li>
+
+                </ul>
+
+            </div>
+
+            <!-- Contact -->
+            <div class="col-lg-3">
+
+                <h5 class="text-warning mb-3">
+                    Aloqa
+                </h5>
+
+                <p>
+                    <i class="bi bi-geo-alt-fill text-warning"></i>
+                    Toshkent, O'zbekiston
+                </p>
+
+                <p>
+                    <i class="bi bi-telephone-fill text-warning"></i>
+                    +998 90 123 45 67
+                </p>
+
+                <p>
+                    <i class="bi bi-envelope-fill text-warning"></i>
+                    info@restaurant.uz
+                </p>
+
+            </div>
+
+            <!-- Social -->
+            <div class="col-lg-3">
+
+                <h5 class="text-warning mb-3">
+                    Bizni kuzating
+                </h5>
+
+                <div class="d-flex gap-3">
+
+                    <a href="#" class="btn btn-warning rounded-circle">
+                        <i class="bi bi-facebook"></i>
+                    </a>
+
+                    <a href="#" class="btn btn-danger rounded-circle">
+                        <i class="bi bi-instagram"></i>
+                    </a>
+
+                    <a href="#" class="btn btn-primary rounded-circle">
+                        <i class="bi bi-telegram"></i>
+                    </a>
+
+                    <a href="#" class="btn btn-danger rounded-circle">
+                        <i class="bi bi-youtube"></i>
+                    </a>
+
+                </div>
+
+                <div class="mt-4">
+
+                    <h6 class="text-warning">
+                        Ish vaqti
+                    </h6>
+
+                    <small class="text-secondary">
+                        Dushanba - Yakshanba
+                        <br>
+                        09:00 - 23:00
+                    </small>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <hr class="border-secondary my-4">
+
+        <div class="row align-items-center">
+
+            <div class="col-md-6 text-center text-md-start">
+
+                <small class="text-secondary">
+                    © 2026 Restaurant. Barcha huquqlar himoyalangan.
+                </small>
+
+            </div>
+
+            <div class="col-md-6 text-center text-md-end">
+
+                <small class="text-secondary">
+                    ❤️ Django | Bootstrap 5 bilan yaratildi
+                </small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</footer>

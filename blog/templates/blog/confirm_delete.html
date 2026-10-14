@@ -1,0 +1,157 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+
+<style>
+
+.delete-wrapper{
+
+    min-height:70vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+.delete-card{
+
+    width:100%;
+    max-width:550px;
+    background:#fff;
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+
+}
+
+.delete-header{
+
+    background:linear-gradient(135deg,#8B0000,#5a0000);
+    color:white;
+    padding:25px;
+    text-align:center;
+
+}
+
+.delete-header h3{
+
+    margin:0;
+    font-weight:bold;
+
+}
+
+.delete-body{
+
+    padding:35px;
+    text-align:center;
+
+}
+
+.delete-body p{
+
+    font-size:18px;
+    color:#444;
+    margin-bottom:30px;
+
+}
+
+.delete-body strong{
+
+    color:#8B0000;
+
+}
+
+.btn-delete{
+
+    background:#8B0000;
+    color:white;
+    border:none;
+    padding:12px 30px;
+    border-radius:30px;
+    transition:.3s;
+
+}
+
+.btn-delete:hover{
+
+    background:#b30000;
+    color:white;
+    transform:translateY(-2px);
+
+}
+
+.btn-cancel{
+
+    border-radius:30px;
+    padding:12px 30px;
+
+}
+
+.btn-cancel:hover{
+
+    background:#d4af37;
+    border-color:#d4af37;
+    color:black;
+
+}
+
+</style>
+
+<div class="delete-wrapper">
+
+    <div class="delete-card">
+
+        <div class="delete-header">
+
+            <h3>🗑 Delete Dish</h3>
+
+        </div>
+
+        <div class="delete-body">
+
+            <p>
+
+                Are you sure you want to remove
+
+                <strong>"{{ article.title }}"</strong>
+
+                from your restaurant menu?
+
+            </p>
+
+            <form method="post">
+
+                {% csrf_token %}
+
+                <div class="d-flex justify-content-center gap-3">
+
+                    <button
+                        type="submit"
+                        class="btn btn-delete">
+
+                        🍽 Yes, Delete
+
+                    </button>
+
+                    <a href="{% url 'article' article.id %}"
+                       class="btn btn-outline-secondary btn-cancel">
+
+                        ↩ Cancel
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock main %}

@@ -1,0 +1,174 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+{% block main %}
+
+<style>
+
+.register-wrapper{
+
+    min-height:80vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px 15px;
+
+}
+
+.register-card{
+
+    width:100%;
+    max-width:600px;
+    background:#fff;
+    border-radius:20px;
+    padding:40px;
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+    border-top:6px solid #8B0000;
+
+}
+
+.register-card h2{
+
+    color:#8B0000;
+    font-weight:bold;
+
+}
+
+.register-card p{
+
+    color:#666;
+
+}
+
+.register-card label{
+
+    font-weight:600;
+    color:#333;
+
+}
+
+.register-card input,
+.register-card select,
+.register-card textarea{
+
+    width:100%;
+    border:2px solid #D4AF37;
+    border-radius:12px;
+    padding:12px 15px;
+    margin-bottom:15px;
+    transition:.3s;
+
+}
+
+.register-card input:focus,
+.register-card select:focus,
+.register-card textarea:focus{
+
+    outline:none;
+    border-color:#8B0000;
+    box-shadow:0 0 10px rgba(139,0,0,.2);
+
+}
+
+.btn-register{
+
+    width:100%;
+    background:#8B0000;
+    color:white;
+    border:none;
+    border-radius:30px;
+    padding:12px;
+    font-size:17px;
+    font-weight:bold;
+    transition:.3s;
+
+}
+
+.btn-register:hover{
+
+    background:#D4AF37;
+    color:#000;
+
+}
+
+.login-link{
+
+    color:#8B0000;
+    text-decoration:none;
+    font-weight:bold;
+
+}
+
+.login-link:hover{
+
+    color:#D4AF37;
+
+}
+
+</style>
+
+<div class="container">
+
+    <div class="register-wrapper">
+
+        <div class="register-card">
+
+            <header class="text-center mb-4">
+
+                <h2>
+                    🍽 Join Our Restaurant
+                </h2>
+
+                <p>
+
+                    Create your account to discover our delicious menu,
+                    reserve tables, and enjoy exclusive offers.
+
+                </p>
+
+            </header>
+
+            <form action="" method="post" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button
+                    class="btn-register"
+                    type="submit">
+
+                    🍕 Create Account
+
+                </button>
+
+                <div class="text-center mt-4">
+
+                    <span class="text-muted">
+
+                        Already have an account?
+
+                    </span>
+
+                    <br>
+
+                    <a href="{% url 'login' %}" class="login-link">
+
+                        🔑 Sign In
+
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock main %}

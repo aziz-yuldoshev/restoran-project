@@ -1,0 +1,677 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock title %}
+
+
+{% block main %}
+
+
+<style>
+
+/* ==========================
+   PREMIUM FOOD DETAIL
+========================== */
+
+.food-detail-wrapper{
+
+    background:#f8f6f3;
+
+    padding:60px 0;
+
+}
+
+
+.product-header{
+
+    background:white;
+
+    padding:20px 30px;
+
+    border-radius:25px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    margin-bottom:35px;
+
+    box-shadow:
+    0 15px 40px rgba(0,0,0,.12);
+
+}
+
+
+.category-badge{
+
+    background:
+    linear-gradient(135deg,#8B0000,#5a0000);
+
+    color:white;
+
+    padding:12px 25px;
+
+    border-radius:50px;
+
+    font-weight:700;
+
+}
+
+
+.product-buttons a{
+
+    border-radius:30px;
+
+    margin:5px;
+
+}
+
+
+/* ==========================
+   MAIN FOOD
+========================== */
+
+.food-main-card{
+
+    background:white;
+
+    border-radius:35px;
+
+    padding:25px;
+
+    box-shadow:
+    0 20px 50px rgba(0,0,0,.12);
+
+}
+
+
+/* ==========================
+   IMAGE
+========================== */
+
+.product-image-box{
+
+    height:550px;
+
+    overflow:hidden;
+
+    border-radius:30px;
+
+    background:#f1f1f1;
+
+}
+
+
+.product-image-box img{
+
+    width:100%;
+
+    height:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:.8s;
+
+}
+
+
+.product-image-box:hover img{
+
+    transform:scale(1.08);
+
+}
+
+
+/* ==========================
+   INFO
+========================== */
+
+.food-info{
+
+    padding:20px 25px;
+
+}
+
+
+.product-title{
+
+    color:#8B0000;
+
+    font-size:42px;
+
+    font-weight:900;
+
+}
+
+
+.product-content{
+
+    color:#555;
+
+    font-size:18px;
+
+    line-height:1.8;
+
+}
+
+
+.price-big{
+
+    display:inline-block;
+
+    margin-top:25px;
+
+    background:#D4AF37;
+
+    color:#111;
+
+    padding:15px 35px;
+
+    border-radius:50px;
+
+    font-size:25px;
+
+    font-weight:900;
+
+}
+
+
+.updated-date{
+
+    margin-top:25px;
+
+    color:#777;
+
+}
+
+
+/* ==========================
+   FAVORITE
+========================== */
+
+.favorite-detail-btn{
+
+    margin-top:25px;
+
+}
+
+
+.favorite-detail-btn a{
+
+    border-radius:50px;
+
+    padding:12px 25px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+
+/* ACTIVE FAVORITE */
+
+.favorite-detail-btn .favorite-active{
+
+    background:#8B0000;
+
+    border-color:#8B0000;
+
+    color:white;
+
+}
+
+
+.favorite-detail-btn .favorite-active:hover{
+
+    background:#600000;
+
+    border-color:#600000;
+
+    color:white;
+
+}
+
+
+/* ==========================
+   SIMILAR
+========================== */
+
+.similar-title{
+
+    margin:70px 0 35px;
+
+    text-align:center;
+
+    color:#8B0000;
+
+    font-weight:900;
+
+}
+
+
+.similar-card{
+
+    height:100%;
+
+    background:white;
+
+    overflow:hidden;
+
+    border-radius:25px;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.12);
+
+    transition:.4s;
+
+}
+
+
+.similar-card:hover{
+
+    transform:translateY(-10px);
+
+}
+
+
+.similar-img{
+
+    height:220px;
+
+    width:100%;
+
+    object-fit:cover;
+
+    display:block;
+
+}
+
+
+.similar-body{
+
+    padding:20px;
+
+    text-align:center;
+
+}
+
+
+.similar-body h5{
+
+    color:#8B0000;
+
+    font-weight:bold;
+
+}
+
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media(max-width:992px){
+
+    .product-image-box{
+
+        height:400px;
+
+    }
+
+
+    .product-title{
+
+        font-size:32px;
+
+    }
+
+
+    .food-info{
+
+        text-align:center;
+
+    }
+
+}
+
+
+@media(max-width:576px){
+
+    .product-image-box{
+
+        height:280px;
+
+    }
+
+
+    .product-header{
+
+        justify-content:center;
+
+        gap:15px;
+
+    }
+
+}
+
+</style>
+
+
+
+<div class="food-detail-wrapper">
+
+
+<div class="container">
+
+
+<!-- ==========================
+     HEADER
+========================== -->
+
+
+<div class="product-header">
+
+
+<span class="category-badge">
+
+🍽 {{ article.category }}
+
+</span>
+
+
+<div class="product-buttons">
+
+
+<a href="{% url 'index' %}"
+   class="btn btn-dark">
+
+    ← Menu
+
+</a>
+
+
+<a href="{% url 'update' article.id %}"
+   class="btn btn-warning">
+
+    ✏ Edit
+
+</a>
+
+
+<a href="{% url 'delete' article.id %}"
+   class="btn btn-danger">
+
+    🗑 Delete
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- ==========================
+     MAIN
+========================== -->
+
+
+<div class="food-main-card">
+
+
+<div class="row align-items-center g-4">
+
+
+
+<!-- ==========================
+     IMAGE
+========================== -->
+
+<div class="col-lg-6">
+
+
+<div class="product-image-box">
+
+
+{% if article.photo %}
+
+    <img src="{{ article.photo.url }}"
+         alt="{{ article.title }}">
+
+{% else %}
+
+    <img src="{{ article.get_photo }}"
+         alt="{{ article.title }}">
+
+{% endif %}
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- ==========================
+     INFO
+========================== -->
+
+<div class="col-lg-6">
+
+
+<div class="food-info">
+
+
+<h1 class="product-title">
+
+🍴 {{ article.title }}
+
+</h1>
+
+
+<p class="product-content">
+
+{{ article.content }}
+
+</p>
+
+
+<!-- PRICE -->
+
+<div class="price-big">
+
+💰 {{ article.price }} so'm
+
+</div>
+
+
+
+<!-- ==========================
+     FAVORITE
+========================== -->
+
+{% if user.is_authenticated %}
+
+
+<div class="favorite-detail-btn">
+
+
+{% if is_favorite %}
+
+
+<!-- ALREADY FAVORITE -->
+
+<a href="{% url 'toggle_favorite' article.id %}"
+   class="btn favorite-active">
+
+    <i class="bi bi-heart-fill"></i>
+
+    Remove from Favorites
+
+</a>
+
+
+{% else %}
+
+
+<!-- NOT FAVORITE -->
+
+<a href="{% url 'toggle_favorite' article.id %}"
+   class="btn btn-outline-danger">
+
+    <i class="bi bi-heart"></i>
+
+    Add to Favorites
+
+</a>
+
+
+{% endif %}
+
+
+</div>
+
+
+{% endif %}
+
+
+
+<!-- DATE -->
+
+<div class="updated-date">
+
+📅 Updated:
+
+{{ article.updated_at }}
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- ==========================
+     SIMILAR
+========================== -->
+
+
+{% if articles %}
+
+
+<h2 class="similar-title">
+
+🍕 You May Also Like
+
+</h2>
+
+
+
+<div class="row g-4">
+
+
+{% for item in articles|slice:":6" %}
+
+
+<div class="col-lg-4 col-md-6">
+
+
+<div class="similar-card">
+
+
+<!-- IMAGE -->
+
+{% if item.photo %}
+
+<img src="{{ item.photo.url }}"
+     class="similar-img"
+     alt="{{ item.title }}">
+
+{% else %}
+
+<img src="{{ item.get_photo }}"
+     class="similar-img"
+     alt="{{ item.title }}">
+
+{% endif %}
+
+
+
+<div class="similar-body">
+
+
+<h5>
+
+🍽 {{ item.title }}
+
+</h5>
+
+
+<p>
+
+{{ item.category }}
+
+</p>
+
+
+<h4 class="text-danger">
+
+💰 {{ item.price }} so'm
+
+</h4>
+
+
+<a href="{% url 'article' item.pk %}"
+   class="btn btn-outline-danger rounded-pill">
+
+    View Dish
+
+</a>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+{% endfor %}
+
+
+</div>
+
+
+{% endif %}
+
+
+
+</div>
+
+
+</div>
+
+
+{% endblock main %}

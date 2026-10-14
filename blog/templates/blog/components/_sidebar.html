@@ -1,0 +1,273 @@
+<div class="sidebar-restaurant">
+
+
+    <div class="sidebar-title">
+
+        <i class="bi bi-grid-fill"></i>
+
+        RESTAURANT MENU
+
+    </div>
+
+
+
+
+    <div class="category-list">
+
+
+        <a href="{% url 'index' %}"
+           class="category-item active">
+
+
+            <i class="bi bi-house-door-fill"></i>
+
+            Bosh sahifa
+
+
+        </a>
+
+
+
+
+        {% for category in categories %}
+
+
+        <a href="{% url 'category' category.pk %}"
+           class="category-item">
+
+
+            <i class="bi bi-egg-fried"></i>
+
+            {{ category.title }}
+
+
+        </a>
+
+
+        {% endfor %}
+
+
+
+    </div>
+
+
+</div>
+
+
+
+
+
+<style>
+
+
+/* ==========================
+      RESTAURANT SIDEBAR
+========================== */
+
+
+.sidebar-restaurant{
+
+
+    background:white;
+
+    border-radius:25px;
+
+    padding:20px;
+
+
+    box-shadow:
+
+    0 15px 35px rgba(0,0,0,.12);
+
+
+    border-top:5px solid #8B0000;
+
+
+}
+
+
+
+
+
+
+.sidebar-title{
+
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+
+    font-size:20px;
+
+    font-weight:800;
+
+
+    color:#8B0000;
+
+
+    padding:15px;
+
+
+    border-bottom:
+
+    1px solid #eee;
+
+
+    margin-bottom:15px;
+
+
+}
+
+
+
+
+.sidebar-title i{
+
+
+    color:#D4AF37;
+
+
+    font-size:24px;
+
+
+}
+
+
+
+
+
+.category-list{
+
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+
+}
+
+
+
+
+
+.category-item{
+
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+
+    padding:13px 18px;
+
+
+    border-radius:15px;
+
+
+    color:#444;
+
+
+    text-decoration:none;
+
+
+    font-weight:600;
+
+
+    transition:.3s;
+
+
+}
+
+
+
+
+
+.category-item i{
+
+
+    color:#8B0000;
+
+    font-size:18px;
+
+
+}
+
+
+
+
+
+.category-item:hover{
+
+
+    background:#8B0000;
+
+
+    color:white;
+
+
+    transform:translateX(8px);
+
+
+}
+
+
+
+
+
+.category-item:hover i{
+
+
+    color:#FFD700;
+
+
+}
+
+
+
+
+
+
+.category-item.active{
+
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #8B0000,
+
+        #5a0000
+
+    );
+
+
+    color:white;
+
+
+}
+
+
+
+
+
+.category-item.active i{
+
+
+    color:#FFD700;
+
+
+}
+
+
+
+
+</style>

@@ -1,0 +1,480 @@
+<div class="food-card">
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <div class="article-header">
+
+        <!-- CATEGORY -->
+
+        <span class="category">
+
+            <i class="bi bi-bookmark-star-fill"></i>
+
+            {{ article.category }}
+
+        </span>
+
+
+        <!-- ACTIONS -->
+
+        <div class="card-actions">
+
+            <!-- VIEWS -->
+
+            <span class="views">
+
+                <i class="bi bi-eye-fill"></i>
+
+                {{ article.views }}
+
+            </span>
+
+
+            <!-- FAVORITE -->
+
+            {% if user.is_authenticated %}
+
+                {% if article.id in favorite_ids %}
+
+                    <!-- ACTIVE FAVORITE -->
+
+                    <a href="{% url 'toggle_favorite' article.id %}"
+                       class="favorite-btn active"
+                       title="Remove from favorites">
+
+                        <i class="bi bi-heart-fill"></i>
+
+                    </a>
+
+                {% else %}
+
+                    <!-- NOT FAVORITE -->
+
+                    <a href="{% url 'toggle_favorite' article.id %}"
+                       class="favorite-btn"
+                       title="Add to favorites">
+
+                        <i class="bi bi-heart"></i>
+
+                    </a>
+
+                {% endif %}
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         IMAGE
+    ========================== -->
+
+    <a href="{% url 'article' article.pk %}"
+       class="image-box">
+
+        <img src="{{ article.get_photo }}"
+             class="article-image"
+             alt="{{ article.title }}">
+
+    </a>
+
+
+    <!-- =========================
+         BODY
+    ========================== -->
+
+    <div class="article-body">
+
+        <h5 class="article-title">
+
+            🍽 {{ article.title }}
+
+        </h5>
+
+
+        <p class="article-text">
+
+            {{ article.content|truncatewords:18 }}
+
+        </p>
+
+    </div>
+
+
+    <!-- =========================
+         PRICE
+    ========================== -->
+
+    <div class="price-box">
+
+        💰 {{ article.price }} so'm
+
+    </div>
+
+
+    <!-- =========================
+         DATE
+    ========================== -->
+
+    <div class="date-box">
+
+        <i class="bi bi-calendar3"></i>
+
+        {{ article.created_at }}
+
+    </div>
+
+</div>
+
+
+<style>
+
+/* ===========================
+   PERFECT FOOD CARD
+=========================== */
+
+.food-card{
+
+    width:100%;
+
+    height:520px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    background:white;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    border-top:5px solid #8B0000;
+
+    box-shadow:
+    0 15px 35px rgba(0,0,0,.12);
+
+    transition:.4s;
+
+}
+
+
+.food-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:
+    0 25px 45px rgba(0,0,0,.2);
+
+}
+
+
+/* ===========================
+   HEADER
+=========================== */
+
+.article-header{
+
+    height:60px;
+
+    padding:15px 18px;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+}
+
+
+/* ===========================
+   CATEGORY
+=========================== */
+
+.category{
+
+    background:#8B0000;
+
+    color:white;
+
+    padding:6px 15px;
+
+    border-radius:20px;
+
+    font-size:13px;
+
+    white-space:nowrap;
+
+}
+
+
+.category i{
+
+    color:#FFD700;
+
+}
+
+
+/* ===========================
+   ACTIONS
+=========================== */
+
+.card-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+/* ===========================
+   VIEWS
+=========================== */
+
+.views{
+
+    color:#777;
+
+    font-size:14px;
+
+}
+
+
+/* ===========================
+   FAVORITE
+=========================== */
+
+.favorite-btn{
+
+    width:38px;
+
+    height:38px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#f5f5f5;
+
+    color:#8B0000;
+
+    text-decoration:none;
+
+    font-size:19px;
+
+    transition:.3s;
+
+}
+
+
+.favorite-btn:hover{
+
+    background:#8B0000;
+
+    color:white;
+
+    transform:scale(1.1);
+
+}
+
+
+/* ACTIVE ❤️ */
+
+.favorite-btn.active{
+
+    background:#8B0000;
+
+    color:white;
+
+}
+
+
+.favorite-btn.active:hover{
+
+    background:#600000;
+
+    color:white;
+
+}
+
+
+/* ===========================
+   IMAGE
+=========================== */
+
+.image-box{
+
+    width:100%;
+
+    height:240px;
+
+    display:block;
+
+    overflow:hidden;
+
+}
+
+
+.article-image{
+
+    width:100%;
+
+    height:240px;
+
+    object-fit:cover;
+
+    display:block;
+
+    transition:.6s;
+
+}
+
+
+.food-card:hover .article-image{
+
+    transform:scale(1.08);
+
+}
+
+
+/* ===========================
+   BODY
+=========================== */
+
+.article-body{
+
+    height:125px;
+
+    padding:15px 20px;
+
+    overflow:hidden;
+
+}
+
+
+.article-title{
+
+    height:30px;
+
+    overflow:hidden;
+
+    white-space:nowrap;
+
+    text-overflow:ellipsis;
+
+    color:#8B0000;
+
+    font-weight:800;
+
+}
+
+
+.article-text{
+
+    color:#666;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    display:-webkit-box;
+
+    -webkit-line-clamp:3;
+
+    -webkit-box-orient:vertical;
+
+    overflow:hidden;
+
+}
+
+
+/* ===========================
+   PRICE
+=========================== */
+
+.price-box{
+
+    margin:10px 20px;
+
+    padding:10px;
+
+    background:#D4AF37;
+
+    color:#111;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    font-size:18px;
+
+    font-weight:900;
+
+}
+
+
+/* ===========================
+   DATE
+=========================== */
+
+.date-box{
+
+    margin-top:auto;
+
+    padding:15px;
+
+    text-align:center;
+
+    color:#777;
+
+    font-size:13px;
+
+}
+
+
+/* ===========================
+   MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+    .food-card{
+
+        height:500px;
+
+    }
+
+
+    .image-box,
+    .article-image{
+
+        height:220px;
+
+    }
+
+
+    .favorite-btn{
+
+        width:35px;
+
+        height:35px;
+
+        font-size:17px;
+
+    }
+
+}
+
+</style>
